@@ -1,0 +1,14 @@
+%header.mdl-layout__header.mdl-layout__header--scroll
+  .mdl-layout__header-row
+    %span.mdl-layout-title FaSocial
+    .mdl-layout-spacer
+    %nav.mdl-navigation
+      - if user_signed_in?
+        =link_to "Cerrar sesión", destroy_user_session_path,method: :delete , class: "mdl-navigation__link"
+      - else
+        =link_to "Login", new_user_session_path, class: "mdl-navigation__link"
+        =link_to "Crear Cuenta", root_path, class: "mdl-navigation__link"
+.mdl-layout__drawer
+  %span.mdl-layout-title FaSocial
+  %nav.mdl-navigation
+    =link_to "Login", new_user_session_path, class: "mdl-navigation__link"

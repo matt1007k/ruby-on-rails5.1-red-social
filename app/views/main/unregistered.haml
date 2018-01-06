@@ -1,0 +1,9 @@
+.full-height.row.middle-xs.white-text.center-xs.main-background.no-margin
+  .col-xs-10.col-sm-8.col-md-6.col-lg-4
+    .big-padding.blue.white-text
+      %h1.no-margin.bold.light-blue-text FacilitoSocial
+      %p.no-margin Conecta y conoce a otros alumnos
+      .top-space
+        =render "devise/registrations/new"
+      .large-padding
+        =link_to "Crear cuenta", new_user_registration_path, class: "grey-text"
