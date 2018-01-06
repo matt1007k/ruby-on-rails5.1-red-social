@@ -36,13 +36,15 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
 gem 'devise'
 gem 'omniauth-facebook'
+# Anota los campos que tenemos en la base de datos en los modelos
+gem 'annotate' # ejecutar bundle exec annotate en el terminal 
 
 #Creamos grupo sólo para pruebas y desarrollo
 group :development, :test do
   gem 'shoulda-matchers' #Métodos de ayuda especifícos de  validación
   gem 'rspec-rails', '~> 3.5.0.beta1' #Framework de pruebas
   gem 'factory_girl_rails', '~> 4.0' #Nos permite crear objetos de la DB para pruebas
-  
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
