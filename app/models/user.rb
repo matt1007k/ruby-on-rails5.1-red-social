@@ -21,6 +21,14 @@
 #  provider               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
+#  cover_file_name        :string
+#  cover_content_type     :string
+#  cover_file_size        :integer
+#  cover_updated_at       :datetime
 #
 
 class User < ApplicationRecord
@@ -37,6 +45,17 @@ class User < ApplicationRecord
 # Un Usuario puede tener muchos Post
 has_many :posts
 
+# configurar campos de imagenes con paperclip
+has_attached_file :avatar, styles: {thumb: "100x100", medium: "300x300"}, default_url: "/images/:style/minion.jpg"
+# Validar que el al guardar el archivo :avatar sea una imagen
+validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+has_attached_file :cover, styles: {thumb: "400x300", medium: "800x600"}, default_url: "/images/:style/missing_cover.jpg"
+# Validar que el al guardar el archivo :cover sea una imagen
+validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
+
+
+# Obtener los datos de omniauth-facebook para iniciar sersión
   def self.from_omniauth(auth)
     where(provider: auth[:provider], uid: auth[:uid]).first_or_create do |user|
       if auth[:info]
@@ -46,6 +65,8 @@ has_many :posts
       user.password = Devise.friendly_token[0, 20]
     end
   end
+
+# Validación personalizada del campo username
   private
     def validate_username_regex
        unless username =~ /\A[a-zA-Z]*[a-zA-Z][a-zA-Z0-9_]*\z/

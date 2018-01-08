@@ -1,0 +1,49 @@
+.row.center-xs
+  .col-xs-10.col-sm-8.col-md-6.col-lg-4
+    .white.mdl-shadow--2dp.top-space.relative
+      .big-padding.white-text.text-left.cover.relative{style:"background-image: url(#{@user.cover.url(:medium)})"}
+        =render "usuarios/menu_avatar"
+        .top-space
+          =circle_img @user.avatar.url(:thumb), 100
+
+      %section.border-bottom.top-space
+        .row.middle-xs
+          .col-xs.center-xs
+            %h1.no-margin.medium.center-xs
+              =@user.name
+              =@user.last_name
+          .col-xs-4.col-sm-2
+          / Botón de agregar amigos
+      .large-padding
+        .row
+          .col-xs
+            Seguidores
+          .col-xs
+            =@user.posts.count
+            posts
+        .row.center-xs
+          .col-xs-8.col-md-10
+            =@user.bio
+
+    - if current_user == @user
+      .white.mdl-shadow--2dp.top-space.relative
+        .row.center-xs
+          .col-xs-8.col-md-10
+            =form_for @user do |f|
+              .mdl-textfield.mdl-js-textfield
+                =f.text_field :username, class: "mdl-textfield__input"
+                = f.label :body,"Nombre del usuario", class: "mdl-textfield__label"
+              .mdl-textfield.mdl-js-textfield
+                =f.text_field :name, class: "mdl-textfield__input"
+                = f.label :body,"Nombre", class: "mdl-textfield__label"
+              .mdl-textfield.mdl-js-textfield
+                =f.text_field :last_name, class: "mdl-textfield__input"
+                = f.label :body,"Apellidos", class: "mdl-textfield__label"
+              .mdl-textfield.mdl-js-textfield
+                =f.text_area :bio, class: "mdl-textfield__input"
+                = f.label :body,"Biografia del usuario", class: "mdl-textfield__label"
+              %div{style:"display:none"}
+                =f.file_field :avatar
+                =f.file_field :cover
+              .text-right.large-padding
+                = f.submit 'Actualizar',class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"

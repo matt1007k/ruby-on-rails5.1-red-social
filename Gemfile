@@ -18,7 +18,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+#gem 'jquery-rails'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -37,7 +37,13 @@ gem 'haml-rails'
 gem 'devise'
 gem 'omniauth-facebook'
 # Anota los campos que tenemos en la base de datos en los modelos
-gem 'annotate' # ejecutar bundle exec annotate en el terminal 
+gem 'annotate' # ejecutar bundle exec annotate en el terminal
+# paperclip para subir archivos
+gem 'paperclip','~> 5.0.0'
+
+
+#best_in_place para Actualizar un campo como si fuera un input
+#gem 'best_in_place', '~> 3.0.1'
 
 #Creamos grupo sólo para pruebas y desarrollo
 group :development, :test do

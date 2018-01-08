@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-
-
   resources :posts
+  resources :usuarios, as: :users, only: [:show,:update]
+
+
   devise_for :users, controllers: {
   	omniauth_callbacks: "users/omniauth_callbacks"
   }

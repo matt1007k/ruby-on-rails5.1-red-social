@@ -4,7 +4,7 @@
     .mdl-layout-spacer
     %nav.mdl-navigation
       - if user_signed_in?
-        =link_to "Cerrar sesión", destroy_user_session_path,method: :delete , class: "mdl-navigation__link"
+        =link_to "Cerrar sesión", destroy_user_session_path,method: :delete, class: "mdl-navigation__link"
       - else
         =link_to "Login", new_user_session_path, class: "mdl-navigation__link"
         =link_to "Crear Cuenta", root_path, class: "mdl-navigation__link"
@@ -14,5 +14,7 @@
     - if user_signed_in?
       %li.mdl-navigation__link
         =current_user.email
+      = link_to "Perfil", "/usuarios/#{current_user.id}", class: "mdl-navigation__link"
+      = link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "mdl-navigation__link"
     -else
       =link_to "Login", new_user_session_path, class: "mdl-navigation__link"
